@@ -60,6 +60,14 @@ functions:
           path: todos/{id}
           method: delete
           cors: true
+          
+  translate:
+    handler: todos/tanslate.translate
+    events:
+      - http:
+          path: todos/{id}/{language}
+          method: get
+          cors: true
 
 resources:
   Resources:
@@ -79,3 +87,18 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
+
+resources:
+  Resources:
+    Translate:
+      Type: 'AWS::Serverless::Function'
+      Properties:
+        CodeUri: translate/
+        Handler: app.lambda_handler
+        Runtime: python3.8
+        Events:
+          Translate:
+            Type: Api
+            Properties:
+              Path: /todos/<id>/<language>
+              Method: get
