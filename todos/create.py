@@ -9,6 +9,7 @@ dynamodb = boto3.resource('dynamodb')
 
 
 def create(event, context):
+    #This is my comment for the UNIR course
     
     data = json.loads(event['body'])
     if 'text' not in data:
