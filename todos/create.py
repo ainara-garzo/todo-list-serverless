@@ -9,6 +9,8 @@ dynamodb = boto3.resource('dynamodb')
 
 
 def create(event, context):
+    print ("This is my print for UNIR course")
+    
     data = json.loads(event['body'])
     if 'text' not in data:
         logging.error("Validation Failed")
