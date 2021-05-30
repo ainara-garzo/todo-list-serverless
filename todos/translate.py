@@ -7,7 +7,7 @@ dynamodb = boto3.resource('dynamodb')
 translate = boto3.client('translate')
 comprehend = boto3.client('comprehend')
 
-def lambda_handler(event, context):
+def get(event, context):
     
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     
