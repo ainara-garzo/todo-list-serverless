@@ -27,6 +27,9 @@ provider:
     - Effect: Allow
       Action:
         - translate:TranslateText
+        - cloudwatch:GetMetricStatistics
+        - cloudwatch:ListMetrics
+      Resource: "*"
     
 functions:
   create:
