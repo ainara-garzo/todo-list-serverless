@@ -25,7 +25,7 @@ provider:
         - comprehend:DetectDominantLanguage
       Resource: "*"
     - Effect: Allow
-    Action:
+      Action:
         - translate:TranslateText
     
 functions:
