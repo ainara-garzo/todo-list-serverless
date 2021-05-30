@@ -19,7 +19,15 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
-
+    - Effect: Allow
+      Action:
+        - comprehend: BatchDetectionDominantLanguage
+        - comprehend: DetectDominantLanguage
+      Resource: "*"
+    -Effect: "Allow"
+    Action:
+      - translate: TranslatedText
+    
 functions:
   create:
     handler: todos/create.create
