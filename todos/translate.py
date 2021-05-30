@@ -21,42 +21,29 @@ def lambda_handler(event, context):
                             region_name = 'eu-east-1', 
                             use_ssl = True)
     
-    task2translate = result['Item']['text']
-    
-    try:
-        review_id = event["pathParameters"]['id']
-    except:
-        review_id = "1"
-    
+    task_to_translate = result['Item']['text']
     target_language = event["pathParameters"]['lang']
     
     try:
-        review = event["queryStringParameters"]['review']
-    except:
-        review = "An error has happened"
+        source_language = comprehend.detect_dominant_language(Text = 'String')
+    except: 
+        source_language = "auto"
     
-    trask_tranlated = translate.translate_text(Text = review, 
-                                        SourceLanguageCode = "auto", 
+    
+    trask_translated = translate.translate_text(Text = task_to_translate, 
+                                        SourceLanguageCode = source_language, 
                                         TargetLanguageCode = target_language)
     
-    result['Item']['tex'] = trask_tranlated['TranslatedText']
+    result['Item']['tex'] = trask_translated['TranslatedText']
     
     #create response
     response = {
         
         'statusCode': 200,
-        'body': json.dumps(result['Item'])
+        'body': json.dumps(result['Item'], cls = decimalencoder.DecimalEncoder)
     }
     
     return response
-    
-
-
-
-# def identify_lang(task):
-#     response = comprehend
-    
-#     return response
     
 # def translate_task(task, source, target):
     

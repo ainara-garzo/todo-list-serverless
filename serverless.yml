@@ -24,7 +24,7 @@ provider:
         - comprehend: BatchDetectionDominantLanguage
         - comprehend: DetectDominantLanguage
       Resource: "*"
-    -Effect: "Allow"
+    - Effect: Allow
     Action:
       - translate: TranslatedText
     
