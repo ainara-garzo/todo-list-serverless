@@ -26,7 +26,7 @@ provider:
       Resource: "*"
     - Effect: Allow
     Action:
-      - translate:TranslateText
+        - translate:TranslateText
     
 functions:
   create:
