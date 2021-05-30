@@ -34,11 +34,11 @@ def get(event, context):
     
     result['Item']['text'] = task_translated['TranslatedText']
     
-    #create response
+   # create a response
     response = {
-        
-        'statusCode': 200,
-        'body': json.dumps(result['Item'], cls = decimalencoder.DecimalEncoder)
+        "statusCode": 200,
+        "body": json.dumps(result['Item'],
+                           cls=decimalencoder.DecimalEncoder)
     }
     
     return response
