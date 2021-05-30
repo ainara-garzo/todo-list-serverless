@@ -24,20 +24,15 @@ def get(event, context):
     try:
         source_language = comprehend.detect_dominant_language(
             Text = task_to_translate,
-            LanguageCode='en')
+            LanguageCode='es')
     except: 
         source_language = "auto"
-    
-    translate = boto3.client(service_name = 'translate', 
-                            region_name = 'eu-east-1', 
-                            use_ssl = True)
-    
     
     task_translated = translate.translate_text(Text = task_to_translate, 
                                         SourceLanguageCode = source_language, 
                                         TargetLanguageCode = target_language)
     
-    result['Item']['tex'] = task_translated['TranslateText']
+    result['Item']['text'] = task_translated['TranslatedText']
     
     #create response
     response = {

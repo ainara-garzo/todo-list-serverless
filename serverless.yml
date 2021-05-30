@@ -73,7 +73,7 @@ functions:
           cors: true
           
   translate:
-    handler: todos/tanslate.translate
+    handler: todos/tanslate.get
     events:
       - http:
           path: todos/{id}/{language}
