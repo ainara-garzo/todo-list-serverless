@@ -17,7 +17,7 @@ def get(event, context):
         }
     )
     
-    target_language = event['pathParameters']['lang']
+    target_language = event['pathParameters']['language']
     
     task_to_translate = result['Item']['text']
     
